@@ -1,7 +1,7 @@
-import { Children, useEffect } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
-export function CusttomModal({ isOpen, onClose, Children }) {
+export function CusttomModal({ isOpen, onClose, children }) {
   useEffect(() => {
     function handler(e) {
       if (e.key === "Escape") onClose();
@@ -16,9 +16,7 @@ export function CusttomModal({ isOpen, onClose, Children }) {
 
   return createPortal(
     <div className={`modal-overlay ${isOpen && "show"}`}>
-      <div className="modal">
-       {Children}
-      </div>
+      <div className="modal">{children}</div>
     </div>,
     document.querySelector("#modal-container")
   );
